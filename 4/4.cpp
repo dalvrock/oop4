@@ -1,7 +1,10 @@
 #include "DIPLOMANT.h"
 #include <iostream>
 
+using namespace std;
 #define MAX 3
+
+void Sort(DIPLOMANT* mas);
 
 int main()
 {
@@ -11,19 +14,22 @@ int main()
         diplomant[i] = DIPLOMANT();
         cin >> diplomant[i];
     }
-    int f;
-    cout << "Count: ";
-    cin >> f;
+    Sort(diplomant);
+    cout << "Sorted values:\n";
     for (int i = 0; i < MAX; i++)
     {
-        for (int j = 0; j < MAX - i - 1; j++)
-        {
-            if (diplomant[j]  diplomant[j + 1])
-            {
-                swap(diplomant[j], diplomant[j + 1]);
-            }
-        }
+        cout << diplomant[i].Get_Stud_Grade() << "\n";
     }
-
 }
 
+void Sort(DIPLOMANT* mas) {
+    for (int i = 0; i < MAX; i++) {
+        int min = i;
+        for (int j = i + 1; j < MAX; ++j)
+        {
+            if (mas[j].Get_Stud_Grade() < mas[min].Get_Stud_Grade())
+                min = j;
+        }
+        std::swap(mas[i], mas[min]);
+    }
+}
